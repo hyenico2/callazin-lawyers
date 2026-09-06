@@ -45,7 +45,19 @@ h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.015em;text-a
   text-wrap:balance}
 .lede{color:var(--muted);font-size:18.5px;max-width:52ch;margin:22px auto 0;text-align:center}
 .lede b{color:var(--ink);font-weight:700}
-.start-row{display:flex;justify-content:center;margin-top:36px}
+.start-row{display:flex;justify-content:center;margin-top:34px}
+.vid-row{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:34px}
+.phone{position:relative;width:min(250px,64vw);aspect-ratio:9/16;border-radius:22px;
+  overflow:hidden;border:1px solid var(--hair);box-shadow:0 22px 60px rgba(0,0,0,.55),
+  0 0 0 6px rgba(16,35,58,.6);background:#000}
+.phone video{width:100%;height:100%;object-fit:cover;display:block}
+.playbtn{position:absolute;inset:0;margin:auto;width:70px;height:70px;border-radius:50%;
+  border:0;cursor:pointer;background:rgba(201,162,39,.92);color:#131313;font-size:24px;
+  padding-left:6px;transition:transform .15s}
+.playbtn:hover{transform:scale(1.07)}
+.playbtn.hide{display:none}
+.vid-cap{color:var(--muted);font-size:15px;max-width:40ch;text-align:center}
+.vid-cap b{color:var(--gold2)}
 .tiny{font-family:Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;
   color:var(--muted);text-align:center;margin-top:18px}
 
@@ -110,6 +122,17 @@ footer a{color:var(--muted)}
       on ChatGPT and your firm isn't in the answer. <b>Six questions, sixty seconds</b> —
       and we'll show you exactly where an automated growth system would plug the leaks.
       We take on a limited number of firms at a time, so this is how the conversation starts.</p>
+    <div class="vid-row">
+      <div class="phone">
+        <video id="demovid" playsinline preload="none" poster="machine-demo-poster.jpg">
+          <source src="machine-demo.mp4" type="video/mp4">
+        </video>
+        <button class="playbtn" id="playbtn" aria-label="Play video">&#9654;</button>
+      </div>
+      <p class="vid-cap">Today&rsquo;s legal news &mdash; researched, fact-checked, voiced,
+        edited and published <b>entirely by our automation</b>. This is the machine
+        we build for firms.</p>
+    </div>
     <div class="start-row"><button class="btn" onclick="go(1)">Start the diagnostic</button></div>
     <p class="tiny">No cost &middot; No obligation &middot; Takes about a minute</p>
   </section>
@@ -202,6 +225,12 @@ function pick(key, j){
     `<input type="hidden" name="${k}" value="${v.replace(/"/g,'&quot;')}">`).join('');
   go(state.step+1);
 }
+/* video player */
+const dv = document.getElementById('demovid'), pb = document.getElementById('playbtn');
+pb.addEventListener('click', ()=>{ dv.play(); pb.classList.add('hide'); });
+dv.addEventListener('click', ()=>{ if(!dv.paused){ dv.pause(); pb.classList.remove('hide'); } });
+dv.addEventListener('ended', ()=>{ pb.classList.remove('hide'); });
+
 /* returning from formsubmit */
 if (new URLSearchParams(location.search).get('done')) { go(QUESTIONS.length+2); }
 document.getElementById('leadform').insertAdjacentHTML('beforeend',
