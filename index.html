@@ -3,220 +3,262 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Callazin for Law Firms — AI Marketing &amp; Client Intake Automation</title>
-<meta name="description" content="Callazin builds the growth machine for law firms: legal SEO, AI-search visibility (ChatGPT &amp; Google AI), 24/7 AI client intake, and done-for-you legal content. Book a call.">
-<meta property="og:title" content="Callazin for Law Firms — AI Marketing &amp; Client Intake Automation">
-<meta property="og:description" content="Legal SEO, AI-search visibility, 24/7 AI intake, and done-for-you content for law firms.">
+<title>The Callazin Diagnostic — AI Growth Systems for Law Firms</title>
+<meta name="description" content="A 60-second diagnostic for law firms. Answer six questions and see where your firm is losing clients — and what an automated growth system would fix first.">
+<meta property="og:title" content="The Callazin Diagnostic — AI Growth Systems for Law Firms">
+<meta property="og:description" content="Six questions. Sixty seconds. See where your firm is losing clients to automation-first competitors.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lawyers.callazin.com/">
 <link rel="canonical" href="https://lawyers.callazin.com/">
 <style>
 :root{
-  --navy:#0c1a2b; --navy2:#14304d; --ink:#f4f1ea; --muted:#aebccd;
-  --gold:#c9a227; --gold2:#e7c86a; --hair:rgba(174,188,205,.22);
+  --navy:#070f1a; --navy2:#0c1a2b; --card:#10233a; --ink:#f4f1ea; --muted:#93a5ba;
+  --gold:#c9a227; --gold2:#e7c86a; --hair:rgba(174,188,205,.16);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--navy);color:var(--ink);
+html,body{height:100%}
+body{background:var(--navy);color:var(--ink);overflow-x:hidden;
   font:17px/1.6 Georgia,'Times New Roman',serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-.ui{font-family:Helvetica,Arial,sans-serif}
-a{color:var(--gold2)}
+#net{position:fixed;inset:0;z-index:0;display:block}
+.veil{position:fixed;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(120% 90% at 50% 10%, rgba(7,15,26,.25) 0%, rgba(7,15,26,.78) 78%, rgba(7,15,26,.94) 100%)}
+.stage{position:relative;z-index:2;min-height:100%;display:flex;flex-direction:column}
+.wrap{width:100%;max-width:780px;margin:0 auto;padding:0 22px}
 
-header{padding:26px 0;border-bottom:1px solid var(--hair)}
-.mast{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.brand .gl{color:var(--gold);font-size:26px}
-.brand .nm{font-family:Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:.22em;
-  text-transform:uppercase;font-size:15px}
-.brand .nm i{font-style:normal;opacity:.55;font-weight:600}
-.mast .cta{white-space:nowrap}
+header{padding:22px 0}
+.brand{display:flex;align-items:center;gap:11px;justify-content:center;color:var(--ink)}
+.brand .gl{color:var(--gold);font-size:22px}
+.brand .nm{font-family:Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:.26em;
+  text-transform:uppercase;font-size:13px}
+.brand .nm i{font-style:normal;opacity:.5;font-weight:600}
 
-.btn{display:inline-block;background:var(--gold);color:#131313;text-decoration:none;
-  font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.04em;
-  padding:14px 26px;border-radius:4px;border:0;font-size:16px;cursor:pointer}
+main{flex:1;display:flex;align-items:center;padding:30px 0 60px}
+.panel{width:100%}
+.step{display:none;animation:in .45s ease both}
+.step.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.step{animation:none}}
+
+.eyebrow{font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;font-size:12px;color:var(--gold2);text-align:center;margin-bottom:18px}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.015em;text-align:center;
+  text-wrap:balance}
+.lede{color:var(--muted);font-size:18.5px;max-width:52ch;margin:22px auto 0;text-align:center}
+.lede b{color:var(--ink);font-weight:700}
+.start-row{display:flex;justify-content:center;margin-top:36px}
+.tiny{font-family:Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;
+  color:var(--muted);text-align:center;margin-top:18px}
+
+.btn{display:inline-block;background:var(--gold);color:#131313;border:0;cursor:pointer;
+  font-family:Helvetica,Arial,sans-serif;font-weight:800;letter-spacing:.05em;
+  padding:16px 34px;border-radius:4px;font-size:16px}
 .btn:hover{background:var(--gold2)}
-.btn.ghost{background:transparent;color:var(--gold2);border:1px solid var(--gold)}
+.btn[disabled]{opacity:.45;cursor:default}
 
-.hero{padding:88px 0 72px;background:
-  radial-gradient(130% 100% at 15% 0%, var(--navy2) 0%, var(--navy) 55%, #070f1a 100%)}
-.eyebrow{font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.24em;
-  text-transform:uppercase;font-size:13px;color:var(--gold2);margin-bottom:20px}
-h1{font-size:clamp(34px,5.4vw,58px);line-height:1.06;letter-spacing:-.015em;
-  font-weight:700;max-width:19ch;text-wrap:balance}
-.hero p.lede{color:var(--muted);font-size:20px;max-width:56ch;margin:26px 0 34px}
-.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
-.rule{width:120px;height:4px;background:var(--gold);margin:34px 0 0}
+.qnum{font-family:Helvetica,Arial,sans-serif;font-weight:800;color:var(--gold);
+  letter-spacing:.18em;font-size:13px;margin-bottom:14px}
+h2{font-size:clamp(24px,4.4vw,34px);line-height:1.15;letter-spacing:-.01em;
+  margin-bottom:26px;text-wrap:balance}
+.opts{display:grid;gap:12px}
+.opt{border:1px solid var(--hair);background:rgba(16,35,58,.55);backdrop-filter:blur(3px);
+  border-radius:6px;padding:16px 18px;cursor:pointer;color:var(--ink);text-align:left;
+  font:17px Georgia,serif;display:flex;gap:14px;align-items:baseline;transition:border-color .15s, background .15s}
+.opt:hover{border-color:var(--gold);background:rgba(20,48,77,.7)}
+.opt .key{font-family:Helvetica,Arial,sans-serif;font-weight:800;font-size:12px;
+  color:var(--gold2);border:1px solid var(--hair);border-radius:3px;padding:2px 7px;flex:none}
+.bar{height:3px;background:var(--hair);border-radius:2px;margin-bottom:34px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .4s ease}
 
-section{padding:72px 0;border-top:1px solid var(--hair)}
-h2{font-size:clamp(26px,3.4vw,38px);line-height:1.12;letter-spacing:-.01em;
-  max-width:26ch;text-wrap:balance;margin-bottom:14px}
-.sub{color:var(--muted);max-width:62ch;margin-bottom:44px}
+label{display:block;font-family:Helvetica,Arial,sans-serif;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
+input{width:100%;background:rgba(10,21,35,.85);border:1px solid var(--hair);color:var(--ink);
+  border-radius:4px;padding:14px;font:16.5px Georgia,serif}
+input:focus{outline:2px solid var(--gold);outline-offset:0;border-color:var(--gold)}
+.finish .btn{margin-top:26px;width:100%}
+.back{background:none;border:0;color:var(--muted);cursor:pointer;margin-top:22px;
+  font:13px Helvetica,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.back:hover{color:var(--ink)}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
-.card{border:1px solid var(--hair);border-radius:6px;padding:30px 28px;
-  background:rgba(20,48,77,.25)}
-.card .k{font-family:Helvetica,Arial,sans-serif;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;font-size:12px;color:var(--gold2);margin-bottom:14px}
-.card h3{font-size:22px;margin-bottom:10px;line-height:1.2}
-.card p{color:var(--muted);font-size:16px}
+.done{text-align:center}
+.done .gl{font-size:44px;color:var(--gold);margin-bottom:18px}
+.done p{color:var(--muted);max-width:46ch;margin:16px auto 0}
+.done p b{color:var(--ink)}
 
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;
-  counter-reset:step}
-.step{border-top:3px solid var(--gold);padding-top:18px}
-.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);
-  font-family:Helvetica,Arial,sans-serif;font-weight:800;color:var(--gold);
-  font-size:15px;letter-spacing:.1em;display:block;margin-bottom:8px}
-.step h3{font-size:19px;margin-bottom:8px}
-.step p{color:var(--muted);font-size:15.5px}
-
-.proof{background:rgba(20,48,77,.25);border:1px solid var(--hair);border-radius:6px;
-  padding:34px 32px;display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
-.proof .gl{color:var(--gold);font-size:34px;line-height:1}
-.proof p{color:var(--muted);max-width:66ch}
-.proof strong{color:var(--ink)}
-
-form{max-width:560px}
-label{display:block;font-family:Helvetica,Arial,sans-serif;font-size:13px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
-input,textarea{width:100%;background:#0a1523;border:1px solid var(--hair);color:var(--ink);
-  border-radius:4px;padding:13px 14px;font:16px Georgia,serif}
-input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:0;border-color:var(--gold)}
-form .btn{margin-top:26px}
-.alt{margin-top:30px;color:var(--muted);font-size:15.5px}
-
-footer{border-top:1px solid var(--hair);padding:38px 0;color:var(--muted);
-  font-family:Helvetica,Arial,sans-serif;font-size:13.5px;display:block}
-footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+footer{position:relative;z-index:2;padding:22px 0 30px;text-align:center;
+  font:12.5px Helvetica,Arial,sans-serif;color:var(--muted)}
+footer a{color:var(--muted)}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap mast">
-    <a class="brand" href="https://callazin.com">
-      <span class="gl">&#9878;</span>
-      <span class="nm">Callazin <i>/ For Law Firms</i></span>
-    </a>
-    <a class="btn cta" href="#book">Book a call</a>
-  </div>
-</header>
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
 
-<section class="hero" style="border-top:0">
-  <div class="wrap">
-    <div class="eyebrow">AI Marketing &amp; Intake Automation for Law Firms</div>
-    <h1>Your next client just asked ChatGPT for a lawyer.</h1>
-    <p class="lede">Search moved. People now ask Google&rsquo;s AI, ChatGPT, and Perplexity
-      who to hire &mdash; and most firms are invisible there. Callazin builds the machine
-      that gets your firm found, answers every inquiry in seconds, and turns attention
-      into signed clients. You practice law; the machine does the rest.</p>
-    <div class="actions">
-      <a class="btn" href="#book">Book a call</a>
-      <a class="btn ghost" href="#build">See what we build</a>
-    </div>
-    <div class="rule"></div>
-  </div>
-</section>
+<div class="stage">
+<header><div class="wrap"><div class="brand">
+  <span class="gl">&#9878;</span>
+  <span class="nm">Callazin <i>/ Firm Diagnostic</i></span>
+</div></div></header>
 
-<section id="build">
-  <div class="wrap">
-    <h2>One system. Three jobs it never stops doing.</h2>
-    <p class="sub">Not a menu of services &mdash; a connected growth system, built and run
-      for you.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="k">Get Found</div>
-        <h3>Legal SEO + AI-search visibility</h3>
-        <p>Rank on Google and Maps &mdash; and get cited when AI assistants answer
-          &ldquo;best employment lawyer near me.&rdquo; Optimizing for AI answers (AEO)
-          is our specialty, and almost no firm is doing it yet.</p>
-      </div>
-      <div class="card">
-        <div class="k">Never Miss a Client</div>
-        <h3>24/7 AI intake &amp; missed-call text-back</h3>
-        <p>Every call, form, and DM answered in seconds &mdash; nights and weekends
-          included. Potential clients get an instant, professional response and a
-          booked consultation; you get the file, not the phone tag.</p>
-      </div>
-      <div class="card">
-        <div class="k">Stay In Front</div>
-        <h3>Done-for-you legal content</h3>
-        <p>We run our own automated legal-news brand, so we know what earns attention
-          in this niche. Your firm gets the same engine: consistent, accurate content
-          that builds authority while you sleep.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<main><div class="wrap"><div class="panel">
 
-<section>
-  <div class="wrap">
-    <h2>How it works</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>Book one call</h3>
-        <p>Twenty minutes. We look at where your firm shows up today &mdash; and where
-          it doesn&rsquo;t &mdash; and tell you exactly what we&rsquo;d build.</p>
-      </div>
-      <div class="step">
-        <h3>We build the machine</h3>
-        <p>SEO, AI-search visibility, intake automation, content &mdash; assembled for
-          your practice areas and your market. No homework on your side.</p>
-      </div>
-      <div class="step">
-        <h3>You sign the clients</h3>
-        <p>Inquiries arrive booked and qualified. One monthly report ties the machine
-          to your caseload, in plain English.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- INTRO -->
+  <section class="step on" id="s0">
+    <div class="eyebrow">Private diagnostic &middot; Law firms only</div>
+    <h1>Most firms never see where their clients leak out.</h1>
+    <p class="lede">While you're in court, an inquiry goes unanswered. A search happens
+      on ChatGPT and your firm isn't in the answer. <b>Six questions, sixty seconds</b> —
+      and we'll show you exactly where an automated growth system would plug the leaks.
+      We take on a limited number of firms at a time, so this is how the conversation starts.</p>
+    <div class="start-row"><button class="btn" onclick="go(1)">Start the diagnostic</button></div>
+    <p class="tiny">No cost &middot; No obligation &middot; Takes about a minute</p>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="proof">
-      <div class="gl">&#9878;</div>
-      <p><strong>We use everything we sell.</strong> Callazin runs its own fully
-        automated legal-news brand &mdash; researched, fact-checked against primary
-        court records, produced, and published daily by our systems. The same
-        automation stack we&rsquo;d build for your firm is already running ours.</p>
-    </div>
-  </div>
-</section>
+  <!-- QUESTIONS (injected) -->
+  <div id="qhost"></div>
 
-<section id="book">
-  <div class="wrap">
-    <h2>Book a call</h2>
-    <p class="sub">Tell us about your firm and we&rsquo;ll come back same-day with
-      times &mdash; and a first read on where you&rsquo;re losing clients.</p>
-    <form action="https://formsubmit.co/hyenico2@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New law-firm lead — lawyers.callazin.com">
+  <!-- CONTACT -->
+  <section class="step finish" id="sC">
+    <div class="bar"><i style="width:92%"></i></div>
+    <div class="qnum">LAST STEP</div>
+    <h2>Where should we send your read-out?</h2>
+    <form id="leadform" action="https://formsubmit.co/hyenico2@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Diagnostic completed — lawyers.callazin.com">
       <input type="hidden" name="_captcha" value="false">
       <input type="text" name="_honey" style="display:none">
+      <div id="answers"></div>
       <label for="f-name">Your name</label>
       <input id="f-name" name="name" type="text" required autocomplete="name">
-      <label for="f-firm">Firm name</label>
+      <label for="f-firm">Firm</label>
       <input id="f-firm" name="firm" type="text" required autocomplete="organization">
       <label for="f-email">Email</label>
       <input id="f-email" name="email" type="email" required autocomplete="email">
-      <label for="f-notes">What&rsquo;s the biggest bottleneck right now?</label>
-      <textarea id="f-notes" name="notes" rows="4"
-        placeholder="e.g. we miss after-hours calls / nobody finds us on Google / no time for content"></textarea>
-      <button class="btn ui" type="submit">Request my call</button>
+      <button class="btn" type="submit">Get my read-out &rarr;</button>
     </form>
-    <p class="alt">Prefer DMs? Message <a
-      href="https://www.instagram.com/uslawfirms/">@uslawfirms</a> on Instagram with the
-      word <strong>GROW</strong> and we&rsquo;ll take it from there.</p>
-  </div>
-</section>
+    <button class="back" onclick="go(state.step-1)">&larr; Back</button>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <div>&copy; 2026 Callazin &mdash; AI Marketing Agency</div>
-    <div><a href="https://callazin.com">callazin.com</a> &middot;
-      <a href="https://www.instagram.com/uslawfirms/">@uslawfirms</a></div>
-  </div>
-</footer>
+  <!-- DONE (formsubmit redirects back with ?done=1) -->
+  <section class="step done" id="sD">
+    <div class="gl">&#9878;</div>
+    <h2>You're in.</h2>
+    <p><b>We reply same-day</b> with your read-out and two or three times for a brief
+      call. Keep an eye on your inbox — and if you want a head start, watch how we run
+      our own automated legal-news brand:
+      <a href="https://www.instagram.com/uslawfirms/" style="color:var(--gold2)">@uslawfirms</a>.</p>
+  </section>
 
+</div></div></main>
+
+<footer>&copy; 2026 Callazin &middot; <a href="https://callazin.com">callazin.com</a>
+  &middot; <a href="https://www.instagram.com/uslawfirms/">@uslawfirms</a></footer>
+</div>
+
+<script>
+/* ---------- questionnaire ---------- */
+const QUESTIONS = [
+  {k:"practice", q:"What does your firm practice?",
+   o:["Personal injury","Family law","Criminal defense","Employment / labor","Business / corporate","Other"]},
+  {k:"size", q:"How big is the team?",
+   o:["Just me","2–5 people","6–20 people","20+ people"]},
+  {k:"clients", q:"Where do new clients mostly come from today?",
+   o:["Referrals & word of mouth","Google search","Social media","Paid ads","Honestly — not sure"]},
+  {k:"response", q:"When a new inquiry comes in after hours… what happens?",
+   o:["Answered within minutes — we have a system","Someone gets to it next morning","It waits until whoever's free sees it","We probably lose some of those"]},
+  {k:"bottleneck", q:"What's the bottleneck holding growth back?",
+   o:["Not enough leads coming in","Slow follow-up — leads go cold","Invisible on Google & AI search","No time for marketing at all"]},
+  {k:"magic", q:"If one thing were automated by Monday, which would you pick?",
+   o:["Client intake — every inquiry answered 24/7","Getting found on Google & ChatGPT","A content engine that runs itself","Follow-ups that never slip"]},
+];
+const state = {step:0, answers:{}};
+const qhost = document.getElementById('qhost');
+QUESTIONS.forEach((Q,i)=>{
+  const s = document.createElement('section');
+  s.className = 'step'; s.id = 's'+(i+1);
+  s.innerHTML = `
+    <div class="bar"><i style="width:${Math.round(((i+1)/(QUESTIONS.length+1))*100)}%"></i></div>
+    <div class="qnum">QUESTION ${i+1} / ${QUESTIONS.length}</div>
+    <h2>${Q.q}</h2>
+    <div class="opts">${Q.o.map((o,j)=>
+      `<button class="opt" onclick="pick('${Q.k}',${j})"><span class="key">${String.fromCharCode(65+j)}</span><span>${o}</span></button>`).join('')}
+    </div>
+    ${i>0?'<button class="back" onclick="go(state.step-1)">&larr; Back</button>':''}`;
+  qhost.appendChild(s);
+});
+function steps(){ return [document.getElementById('s0'),
+  ...QUESTIONS.map((_,i)=>document.getElementById('s'+(i+1))),
+  document.getElementById('sC'), document.getElementById('sD')]; }
+function go(n){
+  state.step = n;
+  steps().forEach((el,i)=>el.classList.toggle('on', i===n));
+  window.scrollTo({top:0, behavior:'smooth'});
+  net.excite();
+}
+function pick(key, j){
+  const Q = QUESTIONS.find(q=>q.k===key);
+  state.answers[key] = Q.o[j];
+  const box = document.getElementById('answers');
+  box.innerHTML = Object.entries(state.answers).map(([k,v])=>
+    `<input type="hidden" name="${k}" value="${v.replace(/"/g,'&quot;')}">`).join('');
+  go(state.step+1);
+}
+/* returning from formsubmit */
+if (new URLSearchParams(location.search).get('done')) { go(QUESTIONS.length+2); }
+document.getElementById('leadform').insertAdjacentHTML('beforeend',
+  `<input type="hidden" name="_next" value="https://lawyers.callazin.com/?done=1">`);
+
+/* ---------- animated automation network ---------- */
+const net = (()=>{
+  const cv = document.getElementById('net'), cx = cv.getContext('2d');
+  let W,H,nodes=[],pulses=[],energy=0;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){ W=cv.width=innerWidth*devicePixelRatio; H=cv.height=innerHeight*devicePixelRatio;
+    cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; }
+  size(); addEventListener('resize', size);
+  const N = Math.min(70, Math.floor(innerWidth/18));
+  for(let i=0;i<N;i++) nodes.push({
+    x:Math.random(), y:Math.random(),
+    vx:(Math.random()-.5)*.0005, vy:(Math.random()-.5)*.0005,
+    r:(Math.random()*1.6+1.1)});
+  const LINKDIST = .16;
+  function frame(){
+    cx.clearRect(0,0,W,H);
+    energy *= .96;
+    for(const n of nodes){
+      n.x += n.vx*(1+energy*6); n.y += n.vy*(1+energy*6);
+      if(n.x<0||n.x>1) n.vx*=-1; if(n.y<0||n.y>1) n.vy*=-1;
+    }
+    // links
+    for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i], b=nodes[j];
+      const dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+      if(d<LINKDIST){
+        const t = 1-d/LINKDIST;
+        cx.strokeStyle = `rgba(201,162,39,${(.10+energy*.25)*t})`;
+        cx.lineWidth = devicePixelRatio*.7;
+        cx.beginPath(); cx.moveTo(a.x*W,a.y*H); cx.lineTo(b.x*W,b.y*H); cx.stroke();
+        if(!reduced && Math.random() < .0006 + energy*.004)
+          pulses.push({a,b,t:0,sp:.012+Math.random()*.02});
+      }
+    }
+    // traveling packets along links
+    pulses = pulses.filter(p=>p.t<=1);
+    for(const p of pulses){
+      p.t += p.sp;
+      const x=(p.a.x+(p.b.x-p.a.x)*p.t)*W, y=(p.a.y+(p.b.y-p.a.y)*p.t)*H;
+      cx.fillStyle='rgba(231,200,106,.9)';
+      cx.beginPath(); cx.arc(x,y,devicePixelRatio*1.8,0,7); cx.fill();
+    }
+    // nodes
+    for(const n of nodes){
+      cx.fillStyle='rgba(147,165,186,.55)';
+      cx.beginPath(); cx.arc(n.x*W,n.y*H,n.r*devicePixelRatio,0,7); cx.fill();
+    }
+    if(!reduced) requestAnimationFrame(frame);
+  }
+  frame(); if(reduced){ /* single static frame drawn above */ }
+  return { excite(){ energy = 1; } };
+})();
+</script>
 </body>
 </html>
