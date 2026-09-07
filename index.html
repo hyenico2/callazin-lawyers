@@ -145,9 +145,11 @@ footer a{color:var(--muted)}
     <div class="bar"><i style="width:92%"></i></div>
     <div class="qnum">LAST STEP</div>
     <h2>Where should we send your read-out?</h2>
-    <form id="leadform" action="https://formsubmit.co/hyenico2@gmail.com" method="POST">
+    <form id="leadform" action="https://formsubmit.co/0fdc468e4694f5b4c51d755a2f68f201" method="POST">
       <input type="hidden" name="_subject" value="Diagnostic completed — lawyers.callazin.com">
       <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" id="autoresp" value="">
       <input type="text" name="_honey" style="display:none">
       <div id="answers"></div>
       <label for="f-name">Your name</label>
@@ -230,6 +232,31 @@ const dv = document.getElementById('demovid'), pb = document.getElementById('pla
 pb.addEventListener('click', ()=>{ dv.play(); pb.classList.add('hide'); });
 dv.addEventListener('click', ()=>{ if(!dv.paused){ dv.pause(); pb.classList.remove('hide'); } });
 dv.addEventListener('ended', ()=>{ pb.classList.remove('hide'); });
+
+/* personalized read-out emailed to the lawyer (via _autoresponse) */
+const READOUT = {
+  "Not enough leads coming in":
+    "your core gap is visibility — the fastest fix is ranking where clients actually search now: Google, Maps, and the AI assistants (ChatGPT, Google AI) that most firms are still invisible on.",
+  "Slow follow-up — leads go cold":
+    "you're losing clients you already won. 24/7 automated intake — every call, form and DM answered in seconds — is usually the single highest-ROI fix for a firm in your position.",
+  "Invisible on Google & AI search":
+    "invisibility is very fixable — legal SEO plus AI-search optimization (AEO) is the exact lane almost no firm competes in yet, which is why early movers win it cheaply.",
+  "No time for marketing at all":
+    "you don't need more hours — you need a machine that runs marketing without you. That is literally what we build: content, visibility and intake that run on their own.",
+};
+document.getElementById('leadform').addEventListener('submit', () => {
+  const a = state.answers, name = (document.getElementById('f-name').value || '').split(' ')[0];
+  const firm = document.getElementById('f-firm').value || 'your firm';
+  let msg = `Hi ${name},\n\nThanks for completing the Callazin diagnostic for ${firm}. Here's your quick read-out:\n\n`;
+  if (a.bottleneck && READOUT[a.bottleneck])
+    msg += `You told us your bottleneck is "${a.bottleneck}" — ${READOUT[a.bottleneck]}\n\n`;
+  if (a.response && a.response !== "Answered within minutes — we have a system")
+    msg += `You also mentioned after-hours inquiries aren't answered instantly. For most firms that's the quietest, most expensive leak — and the quickest one to fix.\n\n`;
+  if (a.magic)
+    msg += `You said you'd automate "${a.magic}" first — noted. That's exactly where we'd start for ${firm}.\n\n`;
+  msg += `We take on a limited number of firms at a time. We'll reply personally within the day with two or three times for a brief call.\n\n— Nico, Callazin\ncallazin.com · @uslawfirms`;
+  document.getElementById('autoresp').value = msg;
+});
 
 /* returning from formsubmit */
 if (new URLSearchParams(location.search).get('done')) { go(QUESTIONS.length+2); }
