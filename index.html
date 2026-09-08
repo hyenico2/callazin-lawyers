@@ -92,6 +92,14 @@ input:focus{outline:2px solid var(--gold);outline-offset:0;border-color:var(--go
 .back:hover{color:var(--ink)}
 
 .done{text-align:center}
+.done-lede{color:var(--muted);max-width:46ch;margin:14px auto 30px}
+.next{display:grid;gap:14px;max-width:520px;margin:0 auto;text-align:left}
+.nx{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--hair);
+  border-radius:6px;padding:15px 17px;background:rgba(16,35,58,.55)}
+.nx .n{font-family:Helvetica,Arial,sans-serif;font-weight:800;color:var(--gold);
+  font-size:13px;letter-spacing:.1em;padding-top:3px}
+.nx div{color:var(--muted);font-size:15.5px;line-height:1.55}
+.nx b{color:var(--ink)}
 .done .gl{font-size:44px;color:var(--gold);margin-bottom:18px}
 .done p{color:var(--muted);max-width:46ch;margin:16px auto 0}
 .done p b{color:var(--ink)}
@@ -149,7 +157,6 @@ footer a{color:var(--muted)}
       <input type="hidden" name="_subject" value="Diagnostic completed — lawyers.callazin.com">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_autoresponse" id="autoresp" value="">
       <input type="text" name="_honey" style="display:none">
       <div id="answers"></div>
       <label for="f-name">Your name</label>
@@ -166,11 +173,21 @@ footer a{color:var(--muted)}
   <!-- DONE (formsubmit redirects back with ?done=1) -->
   <section class="step done" id="sD">
     <div class="gl">&#9878;</div>
-    <h2>You're in.</h2>
-    <p><b>We reply same-day</b> with your read-out and two or three times for a brief
-      call. Keep an eye on your inbox — and if you want a head start, watch how we run
-      our own automated legal-news brand:
-      <a href="https://www.instagram.com/uslawfirms/" style="color:var(--gold2)">@uslawfirms</a>.</p>
+    <h2>That was the smart move.</h2>
+    <p class="done-lede">Most firms keep guessing where the clients went.
+      You just found out. Here&rsquo;s what happens next:</p>
+    <div class="next">
+      <div class="nx"><span class="n">01</span><div><b>Check your inbox.</b> Your
+        personalized read-out just landed &mdash; from Nico at Callazin. (Give it a
+        minute, and peek at spam the first time.)</div></div>
+      <div class="nx"><span class="n">02</span><div><b>We review your answers
+        personally today.</b> Real eyes, not a queue.</div></div>
+      <div class="nx"><span class="n">03</span><div><b>Skip the wait &mdash; grab your
+        call now.</b> We take on a limited number of firms at a time.</div></div>
+    </div>
+    <div class="start-row"><a class="btn" id="bookbtn" href="#">Book my call &rarr;</a></div>
+    <p class="tiny">One brief call. No pitch-fest &mdash; just where your firm leaks
+      clients and what we&rsquo;d build first.</p>
   </section>
 
 </div></div></main>
@@ -233,29 +250,39 @@ pb.addEventListener('click', ()=>{ dv.play(); pb.classList.add('hide'); });
 dv.addEventListener('click', ()=>{ if(!dv.paused){ dv.pause(); pb.classList.remove('hide'); } });
 dv.addEventListener('ended', ()=>{ pb.classList.remove('hide'); });
 
-/* personalized read-out emailed to the lawyer (via _autoresponse) */
+/* lead dispatch -> Make webhook -> designed Resend emails (lawyer + Callazin inbox) */
+const HOOK = 'https://hook.us2.make.com/oz4ltsrbomgq3x1z6vas5134uvmdyg4w';
+const BOOKING = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ39IluB4Qwbrgmqh3iTEBM4yHE6ZfP_BYW4g3J1rcwFYQ9YpxvNVyYAJrXNIlZ9qy8tPFxRHdMF';
+document.getElementById('bookbtn').href = BOOKING;
 const READOUT = {
   "Not enough leads coming in":
-    "your core gap is visibility — the fastest fix is ranking where clients actually search now: Google, Maps, and the AI assistants (ChatGPT, Google AI) that most firms are still invisible on.",
+    "your core gap is visibility \u2014 the fastest fix is ranking where clients actually search now: Google, Maps, and the AI assistants (ChatGPT, Google AI) that most firms are still invisible on.",
   "Slow follow-up — leads go cold":
-    "you're losing clients you already won. 24/7 automated intake — every call, form and DM answered in seconds — is usually the single highest-ROI fix for a firm in your position.",
+    "you\u2019re losing clients you already won. 24/7 automated intake \u2014 every call, form and DM answered in seconds \u2014 is usually the single highest-ROI fix for a firm in your position.",
   "Invisible on Google & AI search":
-    "invisibility is very fixable — legal SEO plus AI-search optimization (AEO) is the exact lane almost no firm competes in yet, which is why early movers win it cheaply.",
+    "invisibility is very fixable \u2014 legal SEO plus AI-search optimization (AEO) is the exact lane almost no firm competes in yet, which is why early movers win it cheaply.",
   "No time for marketing at all":
-    "you don't need more hours — you need a machine that runs marketing without you. That is literally what we build: content, visibility and intake that run on their own.",
+    "you don\u2019t need more hours \u2014 you need a machine that runs marketing without you. That is literally what we build: content, visibility and intake that run on their own.",
 };
-document.getElementById('leadform').addEventListener('submit', () => {
-  const a = state.answers, name = (document.getElementById('f-name').value || '').split(' ')[0];
-  const firm = document.getElementById('f-firm').value || 'your firm';
-  let msg = `Hi ${name},\n\nThanks for completing the Callazin diagnostic for ${firm}. Here's your quick read-out:\n\n`;
+const clean = s => String(s || '').replace(/["\\<>]/g, '').slice(0, 140);
+document.getElementById('leadform').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const a = state.answers;
+  const name = clean(document.getElementById('f-name').value).split(' ')[0] || 'there';
+  const firm = clean(document.getElementById('f-firm').value) || 'your firm';
+  const email = clean(document.getElementById('f-email').value);
+  let readout = '';
   if (a.bottleneck && READOUT[a.bottleneck])
-    msg += `You told us your bottleneck is "${a.bottleneck}" — ${READOUT[a.bottleneck]}\n\n`;
-  if (a.response && a.response !== "Answered within minutes — we have a system")
-    msg += `You also mentioned after-hours inquiries aren't answered instantly. For most firms that's the quietest, most expensive leak — and the quickest one to fix.\n\n`;
+    readout += `You told us your bottleneck is \u2018${clean(a.bottleneck)}\u2019 \u2014 ${READOUT[a.bottleneck]}<br><br>`;
+  if (a.response && a.response !== 'Answered within minutes — we have a system')
+    readout += 'You also mentioned after-hours inquiries can slip. For most firms that is the quietest, most expensive leak \u2014 and the quickest to fix.<br><br>';
   if (a.magic)
-    msg += `You said you'd automate "${a.magic}" first — noted. That's exactly where we'd start for ${firm}.\n\n`;
-  msg += `We take on a limited number of firms at a time. We'll reply personally within the day with two or three times for a brief call.\n\n— Nico, Callazin\ncallazin.com · @uslawfirms`;
-  document.getElementById('autoresp').value = msg;
+    readout += `You said you\u2019d automate \u2018${clean(a.magic)}\u2019 first \u2014 noted. That is exactly where we\u2019d start for ${firm}.`;
+  const body = new URLSearchParams({ lead: '1', name, firm, email, readout,
+    practice: clean(a.practice), size: clean(a.size), clients: clean(a.clients),
+    response: clean(a.response), bottleneck: clean(a.bottleneck), magic: clean(a.magic) });
+  try { fetch(HOOK, { method: 'POST', mode: 'no-cors', keepalive: true, body }); } catch (_) {}
+  setTimeout(() => e.target.submit(), 400);
 });
 
 /* returning from formsubmit */
